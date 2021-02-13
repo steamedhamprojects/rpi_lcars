@@ -13,7 +13,7 @@ class UserInterface:
         pygame.font.init()
         sound.init(audio_params)
 
-        self.screenSurface = pygame.display.set_mode(resolution) #, pygame.FULLSCREEN)
+        self.screenSurface = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
         self.fpsClock = pygame.time.Clock()
         self.fps = fps
         pygame.display.set_caption("LCARS")
