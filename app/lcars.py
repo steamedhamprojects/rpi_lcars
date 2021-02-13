@@ -7,12 +7,13 @@ import serial
 touchReleased = True
 
 def filterSerial(string):
+		global touchReleased
 		minX = 0.25
 		minY = 0.25
 
 		components = string.split(",")
 
-		if global touchReleased == True and components.count() == 2:
+		if touchReleased == True and components.count() == 2:
 			x = components[0]
 			y = components[1]
 			if x > minX and y > minY:
