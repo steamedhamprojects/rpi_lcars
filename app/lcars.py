@@ -6,6 +6,7 @@ import serial
 
 touchReleased = True
 
+
 def filterSerial(string):
 		global touchReleased
 		minX = 0.25
@@ -16,7 +17,7 @@ def filterSerial(string):
 		if touchReleased == True and len(components) == 2:
 			x = components[0]
 			y = components[1]
-			if x > minX and y > minY:
+			if int(x) > minX and int(y) > minY:
 				# we have a valid press 
 				return components
 			else:
