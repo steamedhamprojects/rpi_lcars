@@ -15,6 +15,8 @@ def filterSerial(string):
 		components = string.split(",")
 
 		if touchReleased == True and len(components) == 2:
+			touchReleased = False 
+			# Remove line 18 if we want to implement dragging 
 			x = components[0]
 			y = components[1]
 			if float(x) > minX and float(y) > minY:
@@ -25,7 +27,6 @@ def filterSerial(string):
 				return
 		else:
 			return 
-		return 
 
 
 
