@@ -17,7 +17,7 @@ def filterSerial(string):
 		if touchReleased == True and len(components) == 2:
 			x = components[0]
 			y = components[1]
-			if int(x) > minX and int(y) > minY:
+			if float(x) > minX and float(y) > minY:
 				# we have a valid press 
 				return components
 			else:
