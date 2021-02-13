@@ -4,15 +4,9 @@ import config
 import serial
 
 
+touchReleased = True
 
-
-
-
-if __name__ == "__main__":
-
-	touchReleased = True
-
-	def filterSerial(string):
+def filterSerial(string):
 		minX = 0.25
 		minY = 0.25
 
@@ -30,6 +24,10 @@ if __name__ == "__main__":
 		else:
 			return 
 		return 
+
+
+
+if __name__ == "__main__":
 
 	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 	ser.flush()
