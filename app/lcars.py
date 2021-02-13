@@ -40,6 +40,6 @@ def filterSerial(string):
 			return components
 		else:
 			touchReleased = true 
-	else:
+
 		# Do nothing
 		# This will need to change if we implement dragging 
