@@ -42,7 +42,8 @@ if __name__ == "__main__":
 		if ser.in_waiting > 0:
 			line = ser.readline().decode('utf-8').rstrip()
 			touchLocation = filterSerial(line)
-			print(touchLocation)
+			if touchLocation != None:
+				print(touchLocation)
 		
 		ui.tick()
 
