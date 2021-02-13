@@ -14,15 +14,15 @@ if __name__ == "__main__":
 		minY = 0.25
 
 		components = string.split(",")
-		x = components[0]
-		y = components[1]
-
+		
 		if touchReleased == True and components.count() == 2:
-			if x > minX and y > minY:
-				# we have a valid press 
-				return components
-			else:
-				touchReleased = true 
+			x = components[0]
+			y = components[1]
+				if x > minX and y > minY:
+					# we have a valid press 
+					return components
+				else:
+					touchReleased = true 
 
 	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 	ser.flush()
