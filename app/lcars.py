@@ -14,19 +14,22 @@ def filterSerial(string):
 
 		components = string.split(",")
 
-		if touchReleased == True and len(components) == 2:
-			touchReleased = False 
-			# Remove line 18 if we want to implement dragging 
+		# First, make sure both X and Y are there 
+		if len(components) == 2:
 			x = components[0]
 			y = components[1]
+
+			# Then check if the touch is valid, or if the screen is at rest 
 			if float(x) > minX and float(y) > minY:
-				# we have a valid press 
-				return components
+				# A touch has occurred on the screen 
+
+				if touchReleased == True:
+					# If the previous touch has ended, return this touch and prevent further touches until release
+					touchReleased = False 
+					return components
 			else:
+				# No touch
 				touchReleased = True 
-				return
-		else:
-			return 
 
 
 
