@@ -35,7 +35,7 @@ def filterSerial(string):
 	y = components[1]
 
 	if touchReleased == True:
-		if x > minX && y > minY:
+		if x > minX and y > minY:
 			# we have a valid press 
 			return components
 		else:
