@@ -21,7 +21,7 @@ def filterSerial(string):
 				# we have a valid press 
 				return components
 			else:
-				touchReleased = true 
+				touchReleased = True 
 				return
 		else:
 			return 
