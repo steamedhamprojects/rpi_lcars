@@ -17,7 +17,7 @@ if __name__ == "__main__":
 		x = components[0]
 		y = components[1]
 
-		if touchReleased == True:
+		if touchReleased == True and components.count() == 2:
 			if x > minX and y > minY:
 				# we have a valid press 
 				return components
