@@ -1,0 +1,8 @@
+# global config
+UI_PLACEMENT_MODE = True
+RESOLUTION = (400, 234)
+#RESOLUTION = (800, 600)
+FPS = 60
+DEV_MODE = True
+SOUND = True
+PIN = '1234'
