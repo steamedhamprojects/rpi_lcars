@@ -9,6 +9,20 @@ import serial
 touchReleased = True
 
 if __name__ == "__main__":
+	def filterSerial(string):
+		minX = 0.25
+		minY = 0.25
+
+		components = string.split(",")
+		x = components[0]
+		y = components[1]
+
+		if touchReleased == True:
+			if x > minX and y > minY:
+				# we have a valid press 
+				return components
+			else:
+				touchReleased = true 
 
 	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 	ser.flush()
@@ -26,20 +40,4 @@ if __name__ == "__main__":
 		ui.tick()
 
 
-def filterSerial(string):
-	minX = 0.25
-	minY = 0.25
 
-	components = string.split(",")
-	x = components[0]
-	y = components[1]
-
-	if touchReleased == True:
-		if x > minX and y > minY:
-			# we have a valid press 
-			return components
-		else:
-			touchReleased = true 
-
-		# Do nothing
-		# This will need to change if we implement dragging 
