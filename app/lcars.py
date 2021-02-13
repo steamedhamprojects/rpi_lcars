@@ -26,6 +26,9 @@ if __name__ == "__main__":
 				return components
 			else:
 				touchReleased = true 
+				return
+		else:
+			return 
 
 	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 	ser.flush()
