@@ -5,6 +5,7 @@ import serial
 
 
 touchReleased = True
+touchDelegate = None 
 
 
 def filterSerial(string):
@@ -31,25 +32,32 @@ def filterSerial(string):
 				# No touch
 				touchReleased = True 
 
-
+def openSerialPort():
+	try: 
+		ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+	except serial.SerialException: 
+		print("Serial port not found. Aborting.")
+		return None 
+	else: 
+		ser.flush()
+		return ser 
 
 if __name__ == "__main__":
-
-	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
-	ser.flush()
 
 	firstScreen = TestScreen()
 	ui = UserInterface(firstScreen, config.RESOLUTION, config.UI_PLACEMENT_MODE, config.FPS, config.DEV_MODE,
 					   config.SOUND)
 
+	ser = openSerialPort()
+	touchDelegate = firstScreen
+
 	while (True):
-		if ser.in_waiting > 0:
-			line = ser.readline().decode('utf-8').rstrip()
-			touchLocation = filterSerial(line)
-			if touchLocation != None:
-				print(touchLocation)
-		
 		ui.tick()
 
-
-
+		if ser != None:
+			if ser.in_waiting > 0:
+				line = ser.readline().decode('utf-8').rstrip()
+				touchLocation = filterSerial(line)
+				if touchLocation != None:
+					print(touchLocation)
+					ui.receiveTouch(touchLocation)

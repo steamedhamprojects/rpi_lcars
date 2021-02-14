@@ -32,6 +32,9 @@ class UserInterface:
         self.screen.setup(self.all_sprites)
         self.running = True
 
+    def receiveTouch(self, coordinates):
+        self.screen.hitTest(coordinates)
+
     def update(self):
         self.screen.pre_update(self.screenSurface, self.fpsClock)
         self.all_sprites.update(self.screenSurface)

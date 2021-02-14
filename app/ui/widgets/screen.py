@@ -14,6 +14,9 @@ class LcarsScreen:
         """
         pass
 
+    def hitTest(self, coordinates):
+        print("Performing hit test on" + coordinates)
+
     def getDeltaTime(self, fpsClock):
         """
         Return the amount of time in milliseconds since last frame 
