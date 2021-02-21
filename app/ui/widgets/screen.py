@@ -14,8 +14,15 @@ class LcarsScreen:
         """
         pass
 
-    def hitTest(self, coordinates):
-        print("Performing hit test on" + coordinates)
+    # def hitTest(self, coordinates):
+    #     print("Performing hit test on" + coordinates)
+
+    #     for view in all_sprites.sprites():
+    #         # if coordinates are inside the rect of the view, return the view 
+    #         if view.rect.contains(Rect(coordinates[x], coordinates[y], 1, 1)) == True:
+    #             view .handleEvent(pygame.event.Event(pygame.MOUSEBUTTONUP))
+    #             return 
+
 
     def getDeltaTime(self, fpsClock):
         """

@@ -90,6 +90,9 @@ class TestScreen(LcarsScreen):
             # Play sound
             self.sound_beep1.play()
 
+        if event.type == pygame.MOUSEBUTTONUP:
+            self.sound_beep1.play()
+            print("MouseUp")
         # if event.type == pygame.MOUSEBUTTONUP:
         #     if (not self.layer2[0].visible):
         #         for sprite in self.layer1: sprite.visible = False

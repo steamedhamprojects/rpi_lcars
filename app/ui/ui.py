@@ -32,14 +32,15 @@ class UserInterface:
         self.screen.setup(self.all_sprites)
         self.running = True
 
-    def receiveTouch(self, coordinates):
-        self.screen.hitTest(coordinates)
-
     def update(self):
         self.screen.pre_update(self.screenSurface, self.fpsClock)
         self.all_sprites.update(self.screenSurface)
         self.screen.update(self.screenSurface, self.fpsClock)
         pygame.display.update()
+
+    def receiveTouch(self, coordinates):
+        event = pygame.event.Event(MOUSEBUTTONUP, pos=(coordinates[x],coordinates[y]), button=1)
+        pygame.event.post()
     
     def handleEvents(self):
         for event in pygame.event.get():

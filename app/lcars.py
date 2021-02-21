@@ -58,6 +58,39 @@ if __name__ == "__main__":
 			if ser.in_waiting > 0:
 				line = ser.readline().decode('utf-8').rstrip()
 				touchLocation = filterSerial(line)
+
+				components = string.split(",")
+
+				x = float(components[0])
+				y = float(components[1])
+
+				point = {"x" : x, "y" : y}
+
 				if touchLocation != None:
-					print(touchLocation)
-					ui.receiveTouch(touchLocation)
+					ui.receiveTouch(point)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
