@@ -47,6 +47,7 @@ class TestScreen(LcarsScreen):
         all_sprites.add(t1, layer=1)
 
         l1 = LcarsBlockSmall(colours.ORANGE, (topLeftElbow.nextObjCoordY(pad), hpad), "MUSIC")
+        l1.handler = self.musicHandler
         all_sprites.add(l1, layer=1)
 
         l2 = LcarsBlockSmall(colours.RED_BROWN, (l1.nextObjCoordY(pad), hpad), "NAVIGATION")
@@ -87,6 +88,10 @@ class TestScreen(LcarsScreen):
         self.granted = False
         for sprite in self.layer1: sprite.visible = True
         for sprite in self.layer2: sprite.visible = False
+
+    def musicHandler(self, item, event, clock):
+        from screens.main import ScreenMain
+        self.loadScreen(ScreenMain())
 
     def handleEvents(self, event, fpsClock):
         if event.type == pygame.MOUSEBUTTONDOWN:
