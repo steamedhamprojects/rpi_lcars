@@ -13,7 +13,7 @@ def filterSerial(string):
 		minX = 0.25
 		minY = 0.25
 		maxX = 4.00
-		maxY = 4.00
+		maxY = 3.80
 
 		components = string.split(",")
 
