@@ -27,8 +27,8 @@ def filterSerial(string):
 				# A touch has occurred on the screen 
 
 				# Then translate the voltages into floats from 0-1 
-				xFloat = (float(x) / maxX) - minX
-				yFloat = (float(y) / maxY) - minY
+				xFloat = float(x) / maxX
+				yFloat = float(y) / maxY
 
 				if touchReleased == True:
 					# If the previous touch has ended, return this touch and prevent further touches until release
