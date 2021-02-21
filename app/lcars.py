@@ -12,8 +12,8 @@ def filterSerial(string):
 		global touchReleased
 		minX = 0.25
 		minY = 0.25
-		maxX = 5.00
-		maxY = 5.00
+		maxX = 4.80
+		maxY = 4.80
 
 		components = string.split(",")
 
@@ -21,7 +21,9 @@ def filterSerial(string):
 		if len(components) == 2:
 			x = components[0]
 			y = components[1]
-
+			println("VOLTAGE:")
+			print("X: " + str(x) + " Y: " + str(y))
+			
 			# Then check if the touch is valid, or if the screen is at rest 
 			if float(x) > minX and float(y) > minY:
 				# A touch has occurred on the screen 
@@ -75,8 +77,6 @@ if __name__ == "__main__":
 				if len(touchLocation) == 2:
 					x = float(touchLocation["xFloat"])
 					y = float(touchLocation["xFloat"])
-
-
 
 					point = {"xFloat" : touchLocation["xFloat"], "yFloat" : touchLocation["yFloat"]}
 
