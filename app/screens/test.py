@@ -97,7 +97,7 @@ class TestScreen(LcarsScreen):
             self.sound_beep1.play()
             # from screens.main import ScreenMain
             # self.loadScreen(ScreenMain())
-            print("adding sprite to " + str(event.pos[0]) + ", " + str(event.pos[1]))
+            # print("adding sprite to " + str(event.pos[0]) + ", " + str(event.pos[1]))
             l2 = LcarsBlockSmall(colours.RED_BROWN, (event.pos[1], event.pos[0]), "Hit")
             self.all_sprites.add(l2, layer=1)
 
