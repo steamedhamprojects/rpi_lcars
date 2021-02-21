@@ -71,8 +71,8 @@ if __name__ == "__main__":
 
 
 				if len(touchLocation) == 2:
-					x = float(components[0])
-					y = float(components[1])
+					x = float(touchLocation[0])
+					y = float(touchLocation[1])
 
 
 
