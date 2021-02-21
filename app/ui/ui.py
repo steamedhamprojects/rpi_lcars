@@ -42,6 +42,9 @@ class UserInterface:
         screenWidth = pygame.display.get_surface().get_width()
         screenHeight = pygame.display.get_surface().get_height()
 
+        print("touch at: " + str(coordinates))
+        print("screen size: " + str(screenWidth) + ", " + str(screenHeight))
+
         xPoint = screenWidth * coordinates["xFloat"]
         yPoint = screenHeight * coordinates["yFloat"]
 
