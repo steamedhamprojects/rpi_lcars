@@ -55,8 +55,8 @@ class TestScreen(LcarsScreen):
         l3 = LcarsBlockSmall(colours.BLUE, (l2.nextObjCoordY(pad), hpad), "PERFORMANCE")
         all_sprites.add(l3, layer=1)
 
-        weather = LcarsImage("assets/weather.jpg", (l1.rect.y , l1.nextObjCoordX(10)))
-        all_sprites.add(weather, layer=2)
+        # weather = LcarsImage("assets/weather.jpg", (l1.rect.y , l1.nextObjCoordX(10)))
+        # all_sprites.add(weather, layer=2)
 
         # b1 = LcarsHStrip(colours.PEACH, (400, hpad), 200, "")
         # all_sprites.add(b1, layer=1)
