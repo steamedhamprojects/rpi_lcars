@@ -50,7 +50,7 @@ class UserInterface:
 
         down = pygame.event.Event(MOUSEBUTTONDOWN, pos=(xPoint, yPoint), button=1)
         pygame.event.post(down)
-
+        sleep(0.2)
         up = pygame.event.Event(MOUSEBUTTONUP, pos=(xPoint, yPoint), button=1)
         pygame.event.post(up)
     
