@@ -40,7 +40,7 @@ class UserInterface:
 
     def receiveTouch(self, coordinates):
         event = pygame.event.Event(MOUSEBUTTONUP, pos=(coordinates["x"],coordinates["y"]), button=1)
-        pygame.event.post()
+        pygame.event.post(event)
     
     def handleEvents(self):
         for event in pygame.event.get():
