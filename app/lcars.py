@@ -65,10 +65,10 @@ if __name__ == "__main__":
 					x = float(components[0])
 					y = float(components[1])
 
-				point = {"x" : x, "y" : y}
+					point = {"x" : x, "y" : y}
 
-				if touchLocation != None:
-					ui.receiveTouch(point)
+					if touchLocation != None:
+						ui.receiveTouch(point)
 
 
 
