@@ -33,7 +33,7 @@ def filterSerial(string):
 				if touchReleased == True:
 					# If the previous touch has ended, return this touch and prevent further touches until release
 					touchReleased = False 
-					floats = {"xFloat" : xFloat, "yFloat" : yFloat}
+					floats = {"xFloat" : xFloat, "yFloat" : yFloat * -1}
 					return floats
 				else:
 					return {}
