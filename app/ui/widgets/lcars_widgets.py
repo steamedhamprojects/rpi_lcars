@@ -14,8 +14,9 @@ class LcarsElbow(LcarsWidget):
     STYLE_BOTTOM_RIGHT = 2
     STYLE_TOP_RIGHT = 3
     
-    def __init__(self, colour, style, pos, handler=None):
+    def __init__(self, colour, style, pos, size, handler=None):
         image = pygame.image.load("assets/elbow.png").convert_alpha()
+        image = pygame.transform.smoothscale(image, size)
         # alpha=255
         # image.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
         if (style == LcarsElbow.STYLE_BOTTOM_LEFT):
@@ -26,7 +27,8 @@ class LcarsElbow(LcarsWidget):
             image = pygame.transform.flip(image, True, False)
         
         self.image = image
-        size = (image.get_rect().width, image.get_rect().height)
+        #size = (image.get_rect().width, image.get_rect().height)
+        size = (10, 10)
         LcarsWidget.__init__(self, colour, pos, size, handler)
         self.applyColour(colour)
         print(self.rect.x , "," , self.rect.y)
@@ -34,8 +36,8 @@ class LcarsElbow(LcarsWidget):
 class LcarsHStrip(LcarsWidget):
     """ Thin horizontal strip to go with elbow """
 
-    def __init__(self, colour, pos, width, text, handler=None):
-        size = (width, 20)
+    def __init__(self, colour, pos, width, height, text, handler=None):
+        size = (width, height)
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
 class LcarsSquare(LcarsWidget):
@@ -44,8 +46,11 @@ class LcarsSquare(LcarsWidget):
    STYLE_LEFT = 1
    STYLE_RIGHT = 2
 
-   def __init__(self, colour, style, pos, handler=None):
+   def __init__(self, colour, style, pos, size, handler=None):
     image = pygame.image.load("assets/square.png").convert()
+    image = pygame.image.load("assets/elbow.png").convert_alpha()
+    image = pygame.transform.smoothscale(image, size)
+
     if (style == LcarsTab.STYLE_RIGHT):
         image = pygame.transform.flip(image, False, True)
 
@@ -60,8 +65,11 @@ class LcarsTab(LcarsWidget):
     STYLE_LEFT = 1
     STYLE_RIGHT = 2
     
-    def __init__(self, colour, style, pos, handler=None):
+    def __init__(self, colour, style, pos, size, handler=None):
         image = pygame.image.load("assets/tab.png").convert()
+        image = pygame.image.load("assets/elbow.png").convert_alpha()
+        image = pygame.transform.smoothscale(image, size)
+
         if (style == LcarsTab.STYLE_RIGHT):
             image = pygame.transform.flip(image, False, True)
         
@@ -133,23 +141,20 @@ class LcarsText(LcarsWidget):
 class LcarsBlockLarge(LcarsButton):
     """Left navigation block - large version"""
 
-    def __init__(self, colour, pos, text, size=None, handler=None):
-        if size == None: 
-            size = (101, 147)
+    def __init__(self, colour, pos, text, size, handler=None):
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
 class LcarsBlockMedium(LcarsButton):
    """Left navigation block - medium version"""
 
-   def __init__(self, colour, pos, text, handler=None):
-        size = (101, 62)
+   def __init__(self, colour, pos, text, size, handler=None):
+
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
 class LcarsBlockSmall(LcarsButton):
    """Left navigation block - small version"""
 
-   def __init__(self, colour, pos, text, handler=None):
-        size = (101, 34)
+   def __init__(self, colour, pos, text, size, handler=None):
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
     

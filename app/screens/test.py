@@ -20,6 +20,31 @@ class TestScreen(LcarsScreen):
 
     all_sprites = []
 
+    def convertFloatToPoints(self, x=float, y=float):
+
+        screenWidth = pygame.display.get_surface().get_width()
+        screenHeight = pygame.display.get_surface().get_height()
+
+        return (int(x * screenWidth), int(y * screenHeight))
+
+    def yPercToPoints(self, y):
+
+        screenHeight = pygame.display.get_surface().get_height()
+        return int(y * screenHeight)
+
+    def xPercToPoints(self, x):
+
+        screenWidth = pygame.display.get_surface().get_width()
+        return int(x * screenWidth)
+
+    def convertScreenHeightPointsToFloat(self, y):
+        screenHeight = pygame.display.get_surface().get_height()
+        return y / screenHeight
+
+    def convertScreenWidthPointsToFloat(self, x):
+        screenWidth = pygame.display.get_surface().get_width()
+        return x / screenWidth
+
     def setup(self, all_sprites):
 
         if config.DEV_MODE:
@@ -29,6 +54,7 @@ class TestScreen(LcarsScreen):
         self.layer2 = all_sprites.get_sprites_from_layer(2)
 
         self.all_sprites = all_sprites
+
         # Uncomment for fullscreen
         #DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
@@ -37,24 +63,105 @@ class TestScreen(LcarsScreen):
         pad = 5
         hpad = 10
 
-        topLeftElbow = LcarsElbow(colours.PEACH, 1, (10, hpad - 1))
+        leftStackWidth = 0.1345
+        screenWidth = pygame.display.get_surface().get_width()
+        screenHeight = pygame.display.get_surface().get_height()
+
+        # Elbow
+        topLeftElbow = LcarsElbow(colours.PEACH, 0, (-40, hpad - 1), self.convertFloatToPoints(x = 0.3, y = 0.15)) #0.225
         all_sprites.add(topLeftElbow, layer=1)
 
-        screenWidth = pygame.display.get_surface().get_width()
-        remainingWidth = screenWidth - topLeftElbow.rect.width - (hpad * 2)
+        # Second elbow
+        secondElbow = LcarsElbow(colours.PEACH, 1, (topLeftElbow.nextObjCoordY(pad), hpad - 1), self.convertFloatToPoints(x = 0.3, y = 0.15)) #0.225
+        all_sprites.add(secondElbow, layer=1)
 
-        t1 = LcarsHStrip(colours.PEACH, (11, topLeftElbow.nextObjCoordX(-1)), remainingWidth, "")
-        all_sprites.add(t1, layer=1)
+        # First Horizontal Bar
+        h1 = LcarsHStrip(colours.PEACH, (self.yPercToPoints(0.0595), topLeftElbow.nextObjCoordX(pad)), 60, self.yPercToPoints(0.035), "")
+        all_sprites.add(h1, layer=1)
 
-        l1 = LcarsBlockSmall(colours.ORANGE, (topLeftElbow.nextObjCoordY(pad), hpad), "MUSIC")
+        h2 = LcarsHStrip(colours.ORANGE, (self.yPercToPoints(0.0595), h1.nextObjCoordX(pad)), 120, self.yPercToPoints(0.035), "")
+        all_sprites.add(h2, layer=1)
+
+        h3 = LcarsHStrip(colours.PEACH, (self.yPercToPoints(0.0595), h2.nextObjCoordX(pad)), 20, self.yPercToPoints(0.035), "")
+        all_sprites.add(h3, layer=1)
+
+        h4 = LcarsHStrip(colours.ORANGE, (self.yPercToPoints(0.0595), h3.nextObjCoordX(pad)), 50, self.yPercToPoints(0.035), "")
+        all_sprites.add(h4, layer=1)
+
+        h5 = LcarsHStrip(colours.PEACH, (self.yPercToPoints(0.0595), h4.nextObjCoordX(pad)), 140, self.yPercToPoints(0.035), "")
+        all_sprites.add(h5, layer=1)
+
+        h6 = LcarsHStrip(colours.ORANGE, (self.yPercToPoints(0.0595), h5.nextObjCoordX(pad)), 20, self.yPercToPoints(0.035), "")
+        all_sprites.add(h6, layer=1)
+
+        remainingWidth = screenWidth - h6.rect.left - h6.rect.width - (hpad * 2)
+        hlast = LcarsHStrip(colours.PEACH, (self.yPercToPoints(0.0595), h6.nextObjCoordX(pad)), remainingWidth - pad, self.yPercToPoints(0.035), "")
+        all_sprites.add(hlast, layer=1)
+
+        # Second Horizontal Bar 
+        h7 = LcarsHStrip(colours.PEACH, (secondElbow.rect.top + 1, secondElbow.nextObjCoordX(0)), 40, self.yPercToPoints(0.035), "")
+        all_sprites.add(h7, layer=1)
+
+        h8 = LcarsHStrip(colours.ORANGE, (h7.rect.top, h7.nextObjCoordX(pad)), 240, self.yPercToPoints(0.035), "")
+        all_sprites.add(h8, layer=1)
+
+        h9 = LcarsHStrip(colours.PEACH, (h7.rect.top, h8.nextObjCoordX(pad)), 30, self.yPercToPoints(0.035), "")
+        all_sprites.add(h9, layer=1)
+
+        h10 = LcarsHStrip(colours.ORANGE, (h7.rect.top, h9.nextObjCoordX(pad)), 90, self.yPercToPoints(0.035), "")
+        all_sprites.add(h10, layer=1)
+
+        h11 = LcarsHStrip(colours.PEACH, (h7.rect.top, h10.nextObjCoordX(pad)), 100, self.yPercToPoints(0.035), "")
+        all_sprites.add(h11, layer=1)
+
+        h12 = LcarsHStrip(colours.ORANGE, (h7.rect.top, h11.nextObjCoordX(pad)), 75, self.yPercToPoints(0.035), "")
+        all_sprites.add(h12, layer=1)
+
+        secondRemainingWidth = screenWidth - h12.rect.left - h12.rect.width - (hpad * 2)
+        secondHLast = LcarsHStrip(colours.PEACH, (h7.rect.top, h12.nextObjCoordX(pad)), secondRemainingWidth - pad, self.yPercToPoints(0.035), "")
+        all_sprites.add(secondHLast, layer=1)
+
+        # Left Menu Stack
+        l1 = LcarsBlockSmall(colours.ORANGE, (secondElbow.nextObjCoordY(pad), hpad), "MEDIA", self.convertFloatToPoints(x=leftStackWidth, y=0.10))
         l1.handler = self.musicHandler
         all_sprites.add(l1, layer=1)
 
-        l2 = LcarsBlockSmall(colours.RED_BROWN, (l1.nextObjCoordY(pad), hpad), "NAVIGATION")
+        l2 = LcarsBlockSmall(colours.RED_BROWN, (l1.nextObjCoordY(pad), hpad), "COMMUNICATION", self.convertFloatToPoints(x=leftStackWidth, y=0.10))
         all_sprites.add(l2, layer=1)
 
-        l3 = LcarsBlockSmall(colours.BLUE, (l2.nextObjCoordY(pad), hpad), "PERFORMANCE")
+        l3 = LcarsBlockSmall(colours.DARK_BLUE, (l2.nextObjCoordY(pad), hpad), "NAVIGATION", self.convertFloatToPoints(x=leftStackWidth, y=0.10))
         all_sprites.add(l3, layer=1)
+
+        l4 = LcarsBlockSmall(colours.RED, (l3.nextObjCoordY(pad), hpad), "PERFORMANCE", self.convertFloatToPoints(x=leftStackWidth, y=0.075))
+        all_sprites.add(l4, layer=1)
+
+        l5 = LcarsBlockSmall(colours.BLUE, (l4.nextObjCoordY(pad), hpad), "ENGINEERING", self.convertFloatToPoints(x=leftStackWidth, y=0.075))
+        all_sprites.add(l5, layer=1)
+
+        # Variable height spacer 
+        bottomElbowHeight = 0.15
+        remainingHeight = screenHeight - l5.rect.top - l5.rect.height - self.yPercToPoints(bottomElbowHeight) - (hpad * 2)
+        bottomLeftSpacer = LcarsBlockSmall(colours.WHITE, (l5.nextObjCoordY(pad), hpad), "", self.convertFloatToPoints(x = leftStackWidth, y = self.convertScreenHeightPointsToFloat(remainingHeight)))
+        all_sprites.add(bottomLeftSpacer, layer=1)
+
+        # Bottom Left Elbow
+        bottomLeftElbow = LcarsElbow(colours.PEACH, 0, (bottomLeftSpacer.nextObjCoordY(pad), l5.rect.left), self.convertFloatToPoints(x = 0.3, y = bottomElbowHeight)) #0.225
+        all_sprites.add(bottomLeftElbow, layer=1)
+
+        # Bottom Horizontal Bar
+        h13 = LcarsHStrip(colours.PEACH, (self.yPercToPoints(0.95), bottomLeftElbow.nextObjCoordX(pad)), self.yPercToPoints(0.1), self.yPercToPoints(0.035), "")
+        all_sprites.add(h13, layer=1)
+
+        # Variable width spacer
+        bottomRightElbowWidth = 0.3
+        bottomRemainingWidth = screenWidth - h13.rect.left - h13.rect.width - self.xPercToPoints(bottomRightElbowWidth) - (hpad * 2)
+        bottomRightSpacer = LcarsBlockSmall(colours.WHITE, (h13.rect.top, h13.nextObjCoordX(pad)), "", self.convertFloatToPoints(x = self.convertScreenWidthPointsToFloat(bottomRemainingWidth), y = 0.035))
+        all_sprites.add(bottomRightSpacer, layer=1)
+
+        # Bottom Right Elbow
+        bottomRightElbow = LcarsElbow(colours.PEACH, 3, (bottomRightSpacer.rect.top, bottomRightSpacer.nextObjCoordX(pad)), self.convertFloatToPoints(x = bottomRightElbowWidth, y = bottomElbowHeight)) #0.225
+        all_sprites.add(bottomRightElbow, layer=1)
+
 
         # weather = LcarsImage("assets/weather.jpg", (l1.rect.y , l1.nextObjCoordX(10)))
         # all_sprites.add(weather, layer=2)
@@ -100,11 +207,9 @@ class TestScreen(LcarsScreen):
 
         if event.type == pygame.MOUSEBUTTONUP:
             self.sound_beep1.play()
-            # from screens.main import ScreenMain
-            # self.loadScreen(ScreenMain())
-            # print("adding sprite to " + str(event.pos[0]) + ", " + str(event.pos[1]))
-            l2 = LcarsBlockSmall(colours.RED_BROWN, (event.pos[1], event.pos[0]), "Hit")
-            self.all_sprites.add(l2, layer=1)
+
+            # l2 = LcarsBlockSmall(colours.RED_BROWN, (event.pos[1], event.pos[0]), "Hit")
+            # self.all_sprites.add(l2, layer=1)
 
         # if event.type == pygame.MOUSEBUTTONUP:
         #     if (not self.layer2[0].visible):

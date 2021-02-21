@@ -3,6 +3,7 @@ class LcarsScreen:
     """
     Manage a UI screen
     """
+
     def __init__(self):
         self.nextScreen = None
         self.lastFrameTicks = 0
@@ -14,15 +15,11 @@ class LcarsScreen:
         """
         pass
 
-    # def hitTest(self, coordinates):
-    #     print("Performing hit test on" + coordinates)
+    def floatToScreenPoints(self, x=float, y=float):
+        screenWidth = pygame.display.get_surface().get_width()
+        screenHeight = pygame.display.get_surface().get_height()
 
-    #     for view in all_sprites.sprites():
-    #         # if coordinates are inside the rect of the view, return the view 
-    #         if view.rect.contains(Rect(coordinates[x], coordinates[y], 1, 1)) == True:
-    #             view .handleEvent(pygame.event.Event(pygame.MOUSEBUTTONUP))
-    #             return 
-
+        return {"x" : screenWidth * x, "y" : screenHeight * y}
 
     def getDeltaTime(self, fpsClock):
         """

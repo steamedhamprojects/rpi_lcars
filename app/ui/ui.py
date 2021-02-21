@@ -6,7 +6,8 @@ from ui.utils import sound
 
 
 class UserInterface:
-    def __init__(self, screen, resolution=(800,480),
+
+    def __init__(self, screen, resolution=(2000,768),
                  ui_placement_mode=False, fps=60, dev_mode=False, audio=True,
                  audio_params=(22050, -8, 1, 1024)):
         # init system
@@ -14,8 +15,8 @@ class UserInterface:
         pygame.font.init()
         sound.init(audio_params)
 
-        #self.screenSurface = pygame.display.set_mode(resolution)
-        self.screenSurface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.screenSurface = pygame.display.set_mode(resolution)
+        #self.screenSurface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
         self.fpsClock = pygame.time.Clock()
         self.fps = fps
@@ -33,6 +34,9 @@ class UserInterface:
         self.screen.setup(self.all_sprites)
         self.running = True
 
+    def presentScreen(self, screen):
+        self.loadScreen(screen)      
+
     def update(self):
         self.screen.pre_update(self.screenSurface, self.fpsClock)
         self.all_sprites.update(self.screenSurface)
@@ -42,9 +46,6 @@ class UserInterface:
     def receiveTouch(self, coordinates):
         screenWidth = pygame.display.get_surface().get_width()
         screenHeight = pygame.display.get_surface().get_height()
-
-        # print("touch at: " + str(coordinates))
-        # print("screen size: " + str(screenWidth) + ", " + str(screenHeight))
 
         xPoint = screenWidth * coordinates["xFloat"]
         yPoint = screenHeight - (screenHeight * coordinates["yFloat"])
