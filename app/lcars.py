@@ -38,6 +38,7 @@ def filterSerial(string):
 			else:
 				# No touch
 				touchReleased = True 
+				return {}
 
 def openSerialPort():
 	try: 
@@ -66,9 +67,8 @@ if __name__ == "__main__":
 				line = ser.readline().decode('utf-8').rstrip()
 				touchLocation = filterSerial(line)
 
-				#components = line.split(",")
 
-				if len(components) == 2:
+				if len(touchLocation) == 2:
 					x = float(components[0])
 					y = float(components[1])
 
