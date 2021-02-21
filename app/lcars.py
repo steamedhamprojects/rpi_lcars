@@ -35,12 +35,14 @@ def filterSerial(string):
 					touchReleased = False 
 					floats = {"xFloat" : xFloat, "yFloat" : yFloat}
 					return floats
+				else:
+					return {}
 			else:
 				# No touch
 				touchReleased = True 
-				return {" " : 0}
+				return {}
 		else:
-			return {" " : 0}
+			return {}
 
 def openSerialPort():
 	try: 
