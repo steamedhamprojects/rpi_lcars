@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
 
 
-					point = {"x" : x, "y" : y}
+					point = {"xFloat" : x, "yFloat" : y}
 
 					if touchLocation != None:
 						ui.receiveTouch(point)
