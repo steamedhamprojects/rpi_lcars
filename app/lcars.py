@@ -21,8 +21,6 @@ def filterSerial(string):
 		if len(components) == 2:
 			x = components[0]
 			y = components[1]
-			print("VOLTAGE:")
-			print("X: " + str(x) + " Y: " + str(y))
 
 			# Then check if the touch is valid, or if the screen is at rest 
 			if float(x) > minX and float(y) > minY:
@@ -35,6 +33,8 @@ def filterSerial(string):
 				if touchReleased == True:
 					# If the previous touch has ended, return this touch and prevent further touches until release
 					touchReleased = False 
+					print("VOLTAGE:")
+					print("X: " + str(x) + " Y: " + str(y))
 					floats = {"xFloat" : xFloat, "yFloat" : yFloat}
 					return floats
 				else:
