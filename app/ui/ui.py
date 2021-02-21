@@ -48,8 +48,11 @@ class UserInterface:
         xPoint = screenWidth * coordinates["xFloat"]
         yPoint = screenHeight - (screenHeight * coordinates["yFloat"])
 
-        event = pygame.event.Event(MOUSEBUTTONUP, pos=(xPoint, yPoint), button=1)
-        pygame.event.post(event)
+        down = pygame.event.Event(MOUSEBUTTONDOWN, pos=(xPoint, yPoint), button=1)
+        pygame.event.post(down)
+
+        up = pygame.event.Event(MOUSEBUTTONUP, pos=(xPoint, yPoint), button=1)
+        pygame.event.post(up)
     
     def handleEvents(self):
         for event in pygame.event.get():
