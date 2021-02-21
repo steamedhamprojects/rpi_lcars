@@ -38,7 +38,7 @@ def filterSerial(string):
 			else:
 				# No touch
 				touchReleased = True 
-				return {}
+				return {" " : 0}
 
 def openSerialPort():
 	try: 
