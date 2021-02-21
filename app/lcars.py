@@ -12,8 +12,8 @@ def filterSerial(string):
 		global touchReleased
 		minX = 0.25
 		minY = 0.25
-		maxX = 4.80
-		maxY = 4.80
+		maxX = 4.00
+		maxY = 4.00
 
 		components = string.split(",")
 
