@@ -59,7 +59,7 @@ if __name__ == "__main__":
 				line = ser.readline().decode('utf-8').rstrip()
 				touchLocation = filterSerial(line)
 
-				components = string.split(",")
+				components = line.split(",")
 
 				x = float(components[0])
 				y = float(components[1])
