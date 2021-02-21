@@ -1,4 +1,5 @@
 import pygame
+import time
 from pygame.locals import *
 
 from ui.utils import sound
