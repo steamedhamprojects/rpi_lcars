@@ -61,8 +61,9 @@ if __name__ == "__main__":
 
 				components = line.split(",")
 
-				x = float(components[0])
-				y = float(components[1])
+				if len(components) == 2:
+					x = float(components[0])
+					y = float(components[1])
 
 				point = {"x" : x, "y" : y}
 
