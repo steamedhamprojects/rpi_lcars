@@ -46,7 +46,7 @@ class UserInterface:
         print("screen size: " + str(screenWidth) + ", " + str(screenHeight))
 
         xPoint = screenWidth * coordinates["xFloat"]
-        yPoint = screenHeight * coordinates["yFloat"]
+        yPoint = screenHeight - (screenHeight * coordinates["yFloat"])
 
         event = pygame.event.Event(MOUSEBUTTONUP, pos=(xPoint, yPoint), button=1)
         pygame.event.post(event)
