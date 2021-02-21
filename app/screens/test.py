@@ -18,6 +18,8 @@ from ui.widgets.lcars_widgets import LcarsButton
 
 class TestScreen(LcarsScreen):
 
+    all_sprites = []
+
     def setup(self, all_sprites):
 
         if config.DEV_MODE:
@@ -26,6 +28,7 @@ class TestScreen(LcarsScreen):
         self.layer1 = all_sprites.get_sprites_from_layer(1)
         self.layer2 = all_sprites.get_sprites_from_layer(2)
 
+        self.all_sprites = all_sprites
         # Uncomment for fullscreen
         #DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
@@ -92,8 +95,10 @@ class TestScreen(LcarsScreen):
 
         if event.type == pygame.MOUSEBUTTONUP:
             self.sound_beep1.play()
-            from screens.main import ScreenMain
-            self.loadScreen(ScreenMain())
+            # from screens.main import ScreenMain
+            # self.loadScreen(ScreenMain())
+            l2 = LcarsBlockSmall(colours.RED_BROWN, (event.pos[1], event.pos[0]), "Hit")
+            self.all_sprites.add(l2, layer=1)
 
         # if event.type == pygame.MOUSEBUTTONUP:
         #     if (not self.layer2[0].visible):

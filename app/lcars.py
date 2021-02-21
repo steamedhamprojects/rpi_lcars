@@ -12,6 +12,8 @@ def filterSerial(string):
 		global touchReleased
 		minX = 0.25
 		minY = 0.25
+		maxX = 5.00
+		maxY = 5.00
 
 		components = string.split(",")
 
@@ -24,10 +26,15 @@ def filterSerial(string):
 			if float(x) > minX and float(y) > minY:
 				# A touch has occurred on the screen 
 
+				# Then translate the voltages into screen points
+				xFloat = x / maxX
+				yFloat = y / maxY
+
 				if touchReleased == True:
 					# If the previous touch has ended, return this touch and prevent further touches until release
 					touchReleased = False 
-					return components
+					floats = {"xFloat" : xFloat, "yFloat" : yFloat}
+					return floats
 			else:
 				# No touch
 				touchReleased = True 
@@ -64,6 +71,8 @@ if __name__ == "__main__":
 				if len(components) == 2:
 					x = float(components[0])
 					y = float(components[1])
+
+
 
 					point = {"x" : x, "y" : y}
 

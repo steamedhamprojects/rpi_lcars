@@ -39,7 +39,13 @@ class UserInterface:
         pygame.display.update()
 
     def receiveTouch(self, coordinates):
-        event = pygame.event.Event(MOUSEBUTTONUP, pos=(coordinates["x"],coordinates["y"]), button=1)
+        screenWidth = pygame.display.get_surface().get_width()
+        screenHeight = pygame.display.get_surface().get_height()
+
+        xPoint = screenWidth * coordinates["xFloat"]
+        yPoint = screenHeight * coordinates["yFloat"]
+
+        event = pygame.event.Event(MOUSEBUTTONUP, pos=(xPoint, yPoint), button=1)
         pygame.event.post(event)
     
     def handleEvents(self):
