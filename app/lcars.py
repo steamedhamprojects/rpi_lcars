@@ -66,7 +66,7 @@ if __name__ == "__main__":
 				line = ser.readline().decode('utf-8').rstrip()
 				touchLocation = filterSerial(line)
 
-				components = line.split(",")
+				#components = line.split(",")
 
 				if len(components) == 2:
 					x = float(components[0])
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
 
 
-					point = {"xFloat" : x, "yFloat" : y}
+					point = {"xFloat" : touchLocation["xFloat"], "yFloat" : touchLocation["yFloat"]}
 
 					if touchLocation != None:
 						ui.receiveTouch(point)
